@@ -1,0 +1,3 @@
+name: MOTD
+version: '${project.version}'
+main: com.xiii.motd.MOTD
