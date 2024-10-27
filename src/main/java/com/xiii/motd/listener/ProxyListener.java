@@ -48,12 +48,17 @@ public class ProxyListener {
 
     private String formatMOTD(final boolean fallbackStatus, final boolean mainStatus) {
 
-        final String fallbackIcon = fallbackStatus ? "§2§l✔" : "§4§l✖";
-        final String mainIcon = mainStatus ? "§2§l✔" : "§4§l✖";
+        final String fallbackText = getStatusText(fallbackStatus, "FallBack");
+        final String mainText = getStatusText(mainStatus, "Main");
 
         return String.format(
-                "§e§l      ✿§r §6§lWELCOME TO §b§lGTEAM'S§6§l NETWORK§e§l ✿               §d╚  §a§nProxy§r §2§l✔    §a§nFallback§r %s    §a§nMain§r %s  §d╝",
-                fallbackIcon, mainIcon
+                "§e§l      ✿§r §6§lWELCOME TO §b§lGTEAM'S§6§l NETWORK§e§l ✿               §d╚  §a§nProxy§r §2§l✔    %s    %s  §d╝",
+                fallbackText, mainText
         );
     }
+
+    private String getStatusText(final boolean status, final String label) {
+        return status ? String.format("§a§n%s§r §2§l✔", label) : String.format("§c§n%s§r §4§l✖", label);
+    }
+
 }
