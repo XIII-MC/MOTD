@@ -52,7 +52,7 @@ public class ProxyListener {
         final String mainText = getStatusText(mainStatus, "Main");
 
         return String.format(
-                "§e§l      ✿§r §6§lWELCOME TO §b§lGTEAM'S§6§l NETWORK§e§l ✿               §d╚  §a§nProxy§r §2§l✔    %s    %s  §d╝",
+                "§e§l      ✿§r §6§lWELCOME TO §b§lGTEAM'S§6§l NETWORK§e§l ✿               §d╚  §a§nProxy§r §2§l✔    %s    %s §d╝",
                 fallbackText, mainText
         );
     }
