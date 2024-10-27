@@ -20,24 +20,7 @@ public class ProxyListener {
         final boolean fallbackStatus = checkServer("127.0.0.1", 25565);
         final boolean mainStatus = checkServer("192.168.1.250", 25570);
 
-        final String motd;
-
-        if (fallbackStatus && mainStatus) {
-
-            motd = formatMOTD("✔", "✔");
-
-        } else if (fallbackStatus) {
-
-            motd = formatMOTD("✔", "✖");
-
-        } else if (mainStatus) {
-
-            motd = formatMOTD("✖", "✔");
-
-        } else {
-
-            motd = formatMOTD("✖", "✖");
-        }
+        final String motd = formatMOTD(fallbackStatus, mainStatus);
 
         // Update MOTD
         pingBuilder.description(Component.text(motd));
@@ -63,9 +46,14 @@ public class ProxyListener {
         }
     }
 
-    private String formatMOTD(final String fallbackStatus, final String mainStatus) {
-        return String.format("§e§l      ✿§r §6§lWELCOME TO§1§l §b§lGTEAM'S§6§l NETWORK§e§l ✿               §d╚  §a§nProxy§r §2§l%s§a    §nFallback§r§2§l %s§a    §nMain§r§2§l %s  §d╝",
-                "✔", fallbackStatus, mainStatus);
-    }
+    private String formatMOTD(final boolean fallbackStatus, final boolean mainStatus) {
 
+        final String fallbackIcon = fallbackStatus ? "§2§l✔" : "§4§l✖";
+        final String mainIcon = mainStatus ? "§2§l✔" : "§4§l✖";
+
+        return String.format(
+                "§e§l      ✿§r §6§lWELCOME TO §b§lGTEAM'S§6§l NETWORK§e§l ✿               §d╚  §a§nProxy§r §2§l✔    §a§nFallback§r %s    §a§nMain§r %s  §d╝",
+                fallbackIcon, mainIcon
+        );
+    }
 }
